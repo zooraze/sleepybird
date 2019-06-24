@@ -18,30 +18,52 @@ tweepy_api = tweepy.API(auth)
 
 def get_tweets(username):
     tweets = tweepy_api.user_timeline(screen_name=username)
-    return [{'tweet': t.text,
-             'created_at': t.created_at,
+    return [{'tweet': tweet.text,
+             'created_at': tweet.created_at,
              'username': username,
-             'headshot_url': t.user.profile_image_url}
-            for t in tweets]
+             'headshot_url': tweet.user.profile_image_url}
+            for tweet in tweets]
 
 
-@app.route('/<string:username>')
+def get_query_results(search_term):
+    """Query results."""
+    results = tweepy_api.search(q=search_term, count=30)
+    return [{'tweet': result.text,
+             'created_at': result.created_at,
+             'username': search_term,
+             'headshot_url': result.user.profile_image_url}
+            for result in results]
+
+
+def get_paginated_query_results(search_term):
+    """Paginated query results."""
+    tweet_limit = 1000
+    paginated_tweets = [status for status in tweepy.Cursor(
+        tweepy_api.search, q=query).items(tweet_limit)]
+    results = tweepy_api.search(q=search_term, count=30)
+    return [{'tweet': result.text,
+             'created_at': result.created_at,
+             'username': search_term,
+             'headshot_url': result.user.profile_image_url}
+            for result in results]
+
+
+@app.route('/search/<string:search_term>')
+def search(search_term):
+    return render_template("search.html", results=get_query_results(search_term))
+
+
+@app.route('/list/<string:username>')
 def tweets(username):
-    # 'tweets' is passed as a keyword-arg (**kwargs)
-    # **kwargs are bound to the 'tweets.html' Jinja Template context
     return render_template("tweets.html", tweets=get_tweets(username))
 
 
 @app.route('/')
 def root():
-    # For the sake of example, use static information to inflate the template.
-    # This will be replaced with real information in later steps.
-    dummy_times = [datetime.datetime(2018, 1, 1, 10, 0, 0),
-                   datetime.datetime(2018, 1, 2, 10, 30, 0),
-                   datetime.datetime(2018, 1, 3, 11, 0, 0),
-                   ]
-
-    return render_template('index.html', times=dummy_times)
+    search_term = request.args.get('q')
+    if search_term == None:
+        search_term = 'test'
+    return render_template('index.html', results=get_query_results(search_term))
 
 
 if __name__ == '__main__':

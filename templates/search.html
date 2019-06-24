@@ -1,0 +1,34 @@
+<!-- templates/search.html -->
+<html lang="en">
+<!-- TODO(zooraze): separate template parts (i.e. head, body, footer) into components  -->
+
+<head>
+    <!-- Metadata  -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Search | Twitter API | Sleepybird</title>
+    <!-- Resources  -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="p-3">Get Search Results</h1>
+        {% for result in results %}
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <img src="{{result.headshot_url}}" class="w-12 p-1 float-left image-thumbnail">
+                    <h5 class="ml-10 w-75 mb-1">{{ result.tweet }}</h5>
+                    <small>{{ result.created_at }}</small>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

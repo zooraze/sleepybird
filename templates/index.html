@@ -1,18 +1,60 @@
 <!doctype html>
 <html>
+
 <head>
+  <!-- Metadata  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Twitter API | Sleepybird</title>
+  <!-- Resources  -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 </head>
-<body>
-
-  <h1>Query Twitter API</h1>
-
-  <h2>Recent visits</h2>
-  {% for time in times %}
-    <p>{{ time }}</p>
+<div class="container">
+  <!-- Title -->
+  <h1 class="p-3">sleepybird</h1>
+  <!-- Searchbox -->
+  <div class="row justify-content-center">
+    <form id="searchbar" class="form-inline" method="GET" action="/">
+      <input class="form-control" type="text" name="q">
+      <button class="btn btn-primary" type="submit">search</button>
+    </form>
+  </div>
+  <!-- Results -->
+  {% for result in results %}
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+      <div class="d-flex w-100 justify-content-between">
+        <img src="{{result.headshot_url}}" class="w-12 p-1 float-left image-thumbnail">
+        <h5 class="ml-10 w-75 mb-1">{{ result.tweet }}</h5>
+        <small>{{ result.created_at }}</small>
+      </div>
+    </a>
+  </div>
   {% endfor %}
+  <!-- Pagination -->
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
 
-</body>
+
 </html>
