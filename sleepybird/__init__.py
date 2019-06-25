@@ -15,7 +15,7 @@ auth = tweepy.OAuthHandler(app.config['TWITTER_CONSUMER_KEY'],
 tweepy_api = tweepy.API(auth)
 
 
-def get_tweets(username):
+def get_user_tweets(username):
     tweets = tweepy_api.user_timeline(screen_name=username)
     return [{'tweet': tweet.text,
              'created_at': tweet.created_at,
@@ -34,7 +34,7 @@ def get_query_results(search_term):
             for result in results]
 
 
-def get_paginated_query_results(search_term):
+def get_paginated_results(search_term):
     """Paginated query results."""
     tweet_limit = 1000
     paginated_tweets = [status for status in tweepy.Cursor(
@@ -49,12 +49,16 @@ def get_paginated_query_results(search_term):
 
 @app.route('/search/<string:search_term>')
 def search(search_term):
-    return render_template("search.html", results=get_query_results(search_term))
+    return render_template("search.html",
+                           results=get_query_results(search_term),
+                           search_term=search_term)
 
 
-@app.route('/list/<string:username>')
+@app.route('/user/<string:username>')
 def tweets(username):
-    return render_template("tweets.html", tweets=get_tweets(username))
+    return render_template("tweets.html",
+                           tweets=get_user_tweets(username),
+                           username=username)
 
 
 @app.route('/')
@@ -62,4 +66,6 @@ def root():
     search_term = request.args.get('q')
     if search_term == None:
         search_term = 'test'
-    return render_template('index.html', results=get_query_results(search_term))
+    return render_template('index.html',
+                           results=get_query_results(search_term),
+                           search_term=search_term)

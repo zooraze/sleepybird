@@ -1,6 +1,5 @@
 <!-- templates/search.html -->
 <html lang="en">
-<!-- TODO(zooraze): separate template parts (i.e. head, body, footer) into components  -->
 
 <head>
     <!-- Metadata  -->
@@ -16,7 +15,7 @@
 
 <body>
     <div class="container">
-        <h1 class="p-3">Get Search Results</h1>
+        <h1 class="p-3">Showing results for "{{search_term}}"</h1>
         {% for result in results %}
         <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">

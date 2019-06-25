@@ -1,20 +1,22 @@
+<!-- templates/index.html -->
+<!-- TODO(zooraze): separate template parts (i.e. head, body, footer) into components  -->
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-  <!-- Metadata  -->
+  <!-- Metadata -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Twitter API | Sleepybird</title>
-  <!-- Resources  -->
+  <!-- Resources -->
   <script src="{{ url_for('static', filename='script.js') }}"></script>
   <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <div class="container">
   <!-- Title -->
-  <h1 class="p-3">sleepybird</h1>
+  <h1 class="p-3 text-center">sleepybird</h1>
   <!-- Searchbox -->
   <div class="row justify-content-center">
     <form id="searchbar" class="form-inline" method="GET" action="/">
@@ -23,6 +25,10 @@
     </form>
   </div>
   <!-- Results -->
+  <h5 class="p-3 text-center">Showing results for "{{search_term}}":</h5>
+  <p class="text-center">2019-06-24 06:36:27</p>
+  <p class="text-center">Total words in all tweets: ~9830</p>
+  <p class="text-center">Top 10: the, at, of, and, a, to, this, her, would, him</p>
   {% for result in results %}
   <div class="list-group">
     <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
@@ -35,7 +41,7 @@
   </div>
   {% endfor %}
   <!-- Pagination -->
-  <nav aria-label="Page navigation example">
+  <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <a class="page-link" href="#" aria-label="Previous">
@@ -55,6 +61,5 @@
     </ul>
   </nav>
 </div>
-
 
 </html>
