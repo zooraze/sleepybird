@@ -4,15 +4,17 @@ Single-page application skeleton for accessing the Twitter API.
 ## Features
 * Search box to query against Twitter's search API [WIP]
 * Pagination (currently 1000 result limit) [WIP]
-* Count every word in every tweet
+* Count every word in every tweet [WIP]
 * Report top 10 words across all results [WIP]
-* Log all queries, as well as timestamps and reports
+* Log all queries, as well as timestamps and reports [WIP]
 
 ## Local testing
 ```python main.py```
 
 ## Deploy
 Make a copy of config_dist.py as config.py. In config.py, enter the Twitter API access information.
+
+### Google Cloud
 ```gcloud app deploy```
 
 ## 3rd Party Libraries
