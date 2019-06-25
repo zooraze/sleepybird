@@ -16,6 +16,7 @@ tweepy_api = tweepy.API(auth)
 
 
 def get_user_tweets(username):
+    """Tweets for a given user."""
     tweets = tweepy_api.user_timeline(screen_name=username)
     return [{'tweet': tweet.text,
              'created_at': tweet.created_at,
