@@ -1,6 +1,8 @@
 # sleepybird
 Single-page application skeleton for accessing the Twitter API.
 
+[![Build Status](https://travis-ci.org/zooraze/sleepybird.svg?branch=master)](https://travis-ci.org/zooraze/sleepybird)
+
 ## Features
 * Search box to query against Twitter's search API [WIP]
 * Pagination (currently 1000 result limit) [WIP]
