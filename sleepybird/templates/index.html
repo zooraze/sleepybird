@@ -24,10 +24,26 @@
 			<button class="btn btn-primary" type="submit">search</button>
 		</form>
 	</div>
-	<!-- Results -->
+	<!-- Result Header -->
 	<h5 class="p-3 text-center">Showing results for "{{search_term}}":</h5>
-	<p class="text-center">2019-06-24 06:36:27 | Total words in all tweets: ~9830</p>
-	<p class="text-center">Top 10 Most Frequent Words: the, at, of, and, a, to, this, her, would, him</p>
+	<p class="text-center">{{current_time}} | Total words in all tweets: ~{{word_count}}</p>
+	<p class="text-center">Top 10 Most Frequent Words:</p>
+	<!-- Top Words Table -->
+	<div class="row justify-content-center">
+		<table id="top-words-tbl">
+			<tr>
+				<th>Word</th>
+				<th>Count</th>
+			</tr>
+			{% for word, count in top_words_counter %}
+			<tr>
+				<td>{{word}}</td>
+				<td>{{count }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<!-- Results -->
 	{% for result in results %}
 	<div class="list-group">
 		<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">

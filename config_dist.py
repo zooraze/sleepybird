@@ -2,6 +2,11 @@ import os
 
 DEBUG = True 
 
+# Pagination
+PAGE_SIZE = 20
+VISIBLE_PAGE_COUNT = 10
+
+# Twitter
 # TODO(zooraze): pull configuration from environment variables
 TWITTER_CONSUMER_KEY = 'YOUR_TWITTER_CONSUMER_KEY'
 TWITTER_CONSUMER_SECRET = 'YOUR_TWITTER_CONSUMER_SECRET'
