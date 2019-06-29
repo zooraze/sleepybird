@@ -36,7 +36,7 @@ def search(search_term):
 @app.route('/user/<string:username>')
 def tweets(username):
     return render_template("tweets.html",
-                           tweets=get_user_tweets(username),
+                           tweets=twitterbot.get_user_tweets(username),
                            username=username)
 
 

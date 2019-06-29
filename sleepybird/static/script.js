@@ -18,7 +18,7 @@
 
 window.addEventListener('load', function () {
 
-  console.log("JavaScript loading succesfully.");
+  console.log("It lives!");
 
 });
 // [END gae_python37_log]
