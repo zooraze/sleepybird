@@ -3,13 +3,13 @@ import collections
 
 
 class Analysis(object):
-    
+
     # TODO(zooraze): move to utility class?
     def current_time(self):
         """Current date and time.
 
         Returns:
-            string -- in the form YYYY-MM-DD HH:MM:SS
+            string: YYYY-MM-DD HH:MM:SS
         """
         currentDT = datetime.datetime.now()
 
@@ -22,7 +22,7 @@ class Analysis(object):
         """Total number of words in a list.
 
         Args:
-            words {list} -- words to count
+            words (list): words to count
         Returns:
             integer
         """
@@ -33,8 +33,8 @@ class Analysis(object):
         """Most frequently occurring words.
 
         Args:
-            words {list} -- words to parse
-            limit {integer} -- number of words to report
+            words (list): words to parse
+            limit (integer): number of words to report
         Returns:
             list
         """
