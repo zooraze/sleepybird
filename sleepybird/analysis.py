@@ -2,9 +2,7 @@ import collections
 
 
 class Analysis(object):
-    """
-    Analyze tweets.
-    """
+    """Analyze tweets."""
 
     # TODO(zooraze): reconsider what tokens consititute "words"
     # i.e. url, username, hashtag, etc.
