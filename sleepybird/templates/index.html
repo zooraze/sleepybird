@@ -36,18 +36,6 @@
             </div>
         </div>
     </div>
-    <!-- Results -->
-    {% for result in results %}
-    <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <img src="{{result.headshot_url}}" class="w-12 p-1 float-left image-thumbnail">
-                <h5 class="ml-10 w-75 mb-1">{{ result.tweet }}</h5>
-                <small>{{ result.created_at }}</small>
-            </div>
-        </a>
-    </div>
-    {% endfor %}
     <!-- Pagination -->
     <!-- TODO(zooraze): move to macro/function? -->
     <nav aria-label="Page navigation">
@@ -67,5 +55,17 @@
             </nav>
         </ul>
     </nav>
+    <!-- Results -->
+    {% for result in results %}
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <img src="{{result.headshot_url}}" class="w-12 p-1 float-left image-thumbnail">
+                <h5 class="ml-10 w-75 mb-1">{{ result.tweet }}</h5>
+                <small>{{ result.created_at }}</small>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
