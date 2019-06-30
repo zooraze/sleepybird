@@ -2,8 +2,7 @@ import tweepy
 
 
 class TwitterBot(object):
-    tweepy_api = None
-
+    
     def __init__(self, consumer_key, consumer_secret, access_token=None, access_token_secret=None):
         """Setup application-only access."""
         # Configure Twitter access

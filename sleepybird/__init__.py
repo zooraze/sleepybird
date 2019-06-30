@@ -61,6 +61,7 @@ def root():
 
     # Pagination
     # TODO(zooraze): cache results; can't query twitter api every time
+    # TODO(zooraze): Load first page worth of tweets first, then the rest
     page = int(request.args.get('page', 1))
     tweet_count = len(all_tweets)
     data = range(tweet_count)

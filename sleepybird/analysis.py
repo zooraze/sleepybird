@@ -3,6 +3,7 @@ import collections
 
 
 class Analysis(object):
+    
     # TODO(zooraze): move to utility class?
     def current_time(self):
         """Current date and time.
