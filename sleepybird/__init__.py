@@ -19,7 +19,7 @@ analysis = Analysis()
 # Routes
 @app.route('/search/<string:search_term>')
 def search(search_term):
-    limit = 30
+    limit = 100
     return render_template("search.html",
                            results=twitterbot.get_query_results(
                                search_term, limit),
@@ -36,7 +36,7 @@ def tweets(username):
 @app.route('/')
 def root():
     # Config
-    tweet_limit = 30
+    tweet_limit = 1000
 
     # Twitter query
     search_term = request.args.get('q')
