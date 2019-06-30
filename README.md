@@ -5,7 +5,7 @@ Lightweight Flask application for accessing the Twitter API.
 
 ## Features
 * Search box to query against Twitter's search API
-* Pagination (currently 1000 result limit) [WIP]
+* Pagination (currently 1000 result limit)
 * Count every word in every tweet
 * Report top 10 words across all results
 * Log all queries, as well as timestamps and reports [WIP]
