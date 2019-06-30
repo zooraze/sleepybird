@@ -2,8 +2,12 @@ import os
 
 DEBUG = True 
 
+# Cache
+CACHE_TYPE = "simple"
+CACHE_DEFAULT_TIMEOUT = 300000
+
 # Pagination
-PAGE_SIZE = 20
+PAGE_SIZE = 10
 VISIBLE_PAGE_COUNT = 10
 
 # Twitter

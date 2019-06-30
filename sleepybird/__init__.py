@@ -1,23 +1,20 @@
 from flask import Flask, render_template, json, request
+from flask_caching import Cache
+
 import sleepybird.util
 from sleepybird.analysis import Analysis
 from sleepybird.twitterbot import TwitterBot
 from sleepybird.pagination import Pagination
-
-
-# TODO(zooraze): move to utility class?
 import itertools
 
-
 app = Flask(__name__)
-
-# Load configuration file
 app.config.from_object('config')
 
-# Twitter
+cache = Cache(app)
 twitterbot = TwitterBot(app.config['TWITTER_CONSUMER_KEY'],
                         app.config['TWITTER_CONSUMER_SECRET'])
 analysis = Analysis()
+
 
 # Routes
 @app.route('/search/<string:search_term>')
@@ -39,15 +36,20 @@ def tweets(username):
 @app.route('/')
 def root():
     # Config
-    tweet_limit = 15
+    tweet_limit = 30
 
     # Twitter query
     search_term = request.args.get('q')
-    # TODO(zooraze): should give an introduction when user arrives
+
     if search_term == None or search_term == "":
         return render_template('welcome.html')
 
-    results = twitterbot.get_cursor_results(search_term, tweet_limit)
+    results = cache.get(search_term)
+
+    # TODO(zooraze): Log new queries to datastore
+    if not results:
+        results = twitterbot.get_cursor_results(search_term, tweet_limit)
+        cache.set(search_term, results)
 
     # Gather words from all tweets
     report_limit = 10
@@ -62,7 +64,6 @@ def root():
     top_words_counter = analysis.top_words(word_list, report_limit)
 
     # Pagination
-    # TODO(zooraze): cache results; can't query twitter api every time
     # TODO(zooraze): Load first page worth of tweets first, then the rest
     page = int(request.args.get('page', 1))
     tweet_count = len(all_tweets)

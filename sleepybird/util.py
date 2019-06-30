@@ -1,4 +1,6 @@
 import datetime
+import json
+
 
 def current_time():
     """Current date and time.
@@ -9,3 +11,12 @@ def current_time():
     currentDT = datetime.datetime.now()
 
     return currentDT.strftime("%Y-%m-%d %H:%M:%S")
+
+
+def cache_results(self, results):
+    """Cache query results.
+
+    Args:
+        results (iterator): 
+
+    """
