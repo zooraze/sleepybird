@@ -14,3 +14,12 @@
     </ul>
 </nav>
 {% endmacro %}
+
+{% macro searchbar(endpoint) %}
+<div class="row justify-content-center">
+        <form id="searchbar" class="form-inline" method="GET" action="{{ url_for(endpoint, **kwargs) }}">
+            <input class="form-control" type="text" placeholder="Search twitter.com..." name="q">
+            <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+    </div>
+{% endmacro %}

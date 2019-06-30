@@ -29,7 +29,7 @@ def search(search_term):
 
 @app.route('/user/<string:username>')
 def tweets(username):
-    return render_template("tweets.html",
+    return render_template("user.html",
                            tweets=twitterbot.get_user_tweets(username),
                            username=username)
 
@@ -43,7 +43,7 @@ def root():
     search_term = request.args.get('q')
     # TODO(zooraze): should give an introduction when user arrives
     if search_term == None or search_term == "":
-        search_term = 'test'
+        return render_template('welcome.html')
 
     results = twitterbot.get_cursor_results(search_term, tweet_limit)
 

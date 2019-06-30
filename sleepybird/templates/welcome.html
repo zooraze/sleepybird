@@ -1,0 +1,11 @@
+<!-- templates/tweets.html -->
+{% extends "base.html" %}
+{% import "_macros.html" as macros %}
+{% block title %}Home | sleepybird{% endblock %}
+
+{% block page_content %}
+<div class="container">    
+    {{ macros.searchbar('.root') }}
+    <p id="intro-text">Welcome! Please enter a search term above to query the Twitter API.</p>
+</div>
+{% endblock %}

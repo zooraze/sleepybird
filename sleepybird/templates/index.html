@@ -1,16 +1,11 @@
 {% extends "base.html" %}
 {% import "_macros.html" as macros %}
-{% block title %}Home | sleepybird{% endblock %}
+{% block title %}{{search_term}} | sleepybird{% endblock %}
 
 {% block page_content %}
 <div class="container">
     <!-- Searchbox -->
-    <div class="row justify-content-center">
-        <form id="searchbar" class="form-inline" method="GET" action="{{ url_for('root') }}">
-            <input class="form-control" type="text" name="q">
-            <button class="btn btn-primary" type="submit">search</button>
-        </form>
-    </div>
+    {{ macros.searchbar('.root') }}
     <!-- Result Header -->
     <h5 class="p-3 text-center">Showing results for "{{search_term}}":</h5>
     <p class="text-center">{{current_time}} | Total words in all tweets: ~{{word_count}}</p>
@@ -54,9 +49,22 @@
     </div>
     {% endfor %}
     <!-- Pagination -->
+    <!-- TODO(zooraze): move to macro/function? -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-            {{ macros.pagination_widget(pages, '.root') }}
+            <nav aria-label="Page navigation">
+                <ul class="pagination">
+                    {% for p in pages %}
+                    <li class="page-item {{p['class']}}">
+                        <a href="{{ url_for('.root', page = p['href'], q = search_term)}}" class="page-link"
+                            aria-label={{p['page']}}>
+                            <span aria-hidden="true">{{p['page_label'] | safe}}</span>
+                            <span class="sr-only">{{p['page_label'] | safe}}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </nav>
         </ul>
     </nav>
 </div>
