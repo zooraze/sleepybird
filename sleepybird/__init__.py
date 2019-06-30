@@ -64,7 +64,7 @@ def root():
     top_words_counter = analysis.top_words(word_list, report_limit)
 
     # Pagination
-    # TODO(zooraze): Load first page worth of tweets first, then the rest
+    # TODO(zooraze): Lazy load tweets for more responsive-feeling experience
     page = int(request.args.get('page', 1))
     tweet_count = len(all_tweets)
     data = range(tweet_count)
