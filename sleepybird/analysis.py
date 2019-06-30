@@ -1,19 +1,7 @@
-import datetime
 import collections
 
 
 class Analysis(object):
-
-    # TODO(zooraze): move to utility class?
-    def current_time(self):
-        """Current date and time.
-
-        Returns:
-            string: YYYY-MM-DD HH:MM:SS
-        """
-        currentDT = datetime.datetime.now()
-
-        return currentDT.strftime("%Y-%m-%d %H:%M:%S")
 
     # TODO(zooraze): reconsider what tokens consititute "words"
     # i.e. url, username, hashtag, etc.
@@ -24,7 +12,7 @@ class Analysis(object):
         Args:
             words (list): words to count
         Returns:
-            integer
+            int
         """
 
         return len(words)
@@ -34,7 +22,7 @@ class Analysis(object):
 
         Args:
             words (list): words to parse
-            limit (integer): number of words to report
+            limit (int): number of words to report
         Returns:
             list
         """

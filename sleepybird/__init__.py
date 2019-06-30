@@ -1,7 +1,9 @@
 from flask import Flask, render_template, json, request
+import sleepybird.util
 from sleepybird.analysis import Analysis
 from sleepybird.twitterbot import TwitterBot
 from sleepybird.pagination import Pagination
+
 
 # TODO(zooraze): move to utility class?
 import itertools
@@ -75,6 +77,6 @@ def root():
                            pages=pages,
                            results=data_to_show,
                            search_term=search_term,
-                           current_time=analysis.current_time(),
+                           current_time=util.current_time(),
                            word_count=word_count,
                            top_words_counter=top_words_counter)
