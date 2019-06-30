@@ -3,6 +3,7 @@ from flask import current_app
 
 
 class Pagination:
+    """Provide pagination support."""
 
     def __init__(self, page, count):
         self.page = page

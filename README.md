@@ -1,5 +1,5 @@
 # sleepybird
-Single-page application skeleton for accessing the Twitter API.
+Lightweight Flask application for accessing the Twitter API.
 
 [![Build Status](https://travis-ci.org/zooraze/sleepybird.svg?branch=master)](https://travis-ci.org/zooraze/sleepybird)
 
