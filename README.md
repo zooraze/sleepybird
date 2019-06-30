@@ -4,10 +4,10 @@ Single-page application skeleton for accessing the Twitter API.
 [![Build Status](https://travis-ci.org/zooraze/sleepybird.svg?branch=master)](https://travis-ci.org/zooraze/sleepybird)
 
 ## Features
-* Search box to query against Twitter's search API [WIP]
+* Search box to query against Twitter's search API
 * Pagination (currently 1000 result limit) [WIP]
-* Count every word in every tweet [WIP]
-* Report top 10 words across all results [WIP]
+* Count every word in every tweet
+* Report top 10 words across all results
 * Log all queries, as well as timestamps and reports [WIP]
 
 ## Local testing
@@ -20,10 +20,10 @@ Make a copy of config_dist.py as config.py. In config.py, enter the Twitter API 
 ```gcloud app deploy```
 
 ## 3rd Party Libraries
-[Flask](http://flask.pocoo.org/): Python microframework for the back-end [WIP]
+[Flask](http://flask.pocoo.org/): Python microframework for the back-end
 
-[Tweepy](https://www.tweepy.org/): Python library for simplifying Twitter API access [WIP]
+[Tweepy](https://www.tweepy.org/): Python library for simplifying Twitter API access 
 
-[Bootstrap](https://getbootstrap.com/): front-end component library [WIP]
+[Bootstrap](https://getbootstrap.com/): front-end component library
 
 [Sphinx](http://www.sphinx-doc.org/en/master/): generate documentation. [WIP]
