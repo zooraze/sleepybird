@@ -1,5 +1,5 @@
 {% macro pagination_widget(pages, endpoint) %}
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation">
     <ul class="pagination">
         {% for p in pages %}
         <li class="page-item {{p['class']}}">
@@ -8,7 +8,6 @@
                 aria-label={{p['page']}}>
                 <span aria-hidden="true">{{p['page_label'] | safe}}</span>
                 <span class="sr-only">{{p['page_label'] | safe}}</span>
-
             </a>
         </li>
         {% endfor %}

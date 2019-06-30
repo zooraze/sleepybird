@@ -32,6 +32,7 @@ class TwitterBot(object):
 
     def get_cursor_results(self, search_term, limit):
         """Paginated query results."""
+        # TODO(zooraze): optimize; tweepy.Cursor is causing a huge slowdown
         results = tweepy.Cursor(self.tweepy_api.search,
                                                q=search_term,
                                                lang="en").items(limit)

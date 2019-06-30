@@ -1,26 +1,20 @@
 from flask import Flask, render_template, json, request
 from sleepybird.analysis import Analysis
 from sleepybird.twitterbot import TwitterBot
+from sleepybird.pagination import Pagination
 
 # TODO(zooraze): move to utility class?
 import itertools
 
 
 app = Flask(__name__)
+
 # Load configuration file
 app.config.from_object('config')
 
-# Pagination
-page_size = app.config['PAGE_SIZE']
-visible_page_count = app.config['VISIBLE_PAGE_COUNT']
-
 # Twitter
-consumer_key = app.config['TWITTER_CONSUMER_KEY']
-consumer_secret = app.config['TWITTER_CONSUMER_SECRET']
-access_token = app.config['TWITTER_ACCESS_TOKEN']
-access_token_secret = app.config['TWITTER_ACCESS_TOKEN_SECRET']
-
-twitterbot = TwitterBot(consumer_key, consumer_secret)
+twitterbot = TwitterBot(app.config['TWITTER_CONSUMER_KEY'],
+                        app.config['TWITTER_CONSUMER_SECRET'])
 analysis = Analysis()
 
 # Routes
@@ -42,12 +36,14 @@ def tweets(username):
 
 @app.route('/')
 def root():
+    # Config
+    tweet_limit = 15
+
     # Twitter query
     search_term = request.args.get('q')
     # TODO(zooraze): should give an introduction when user arrives
-    if search_term == None:
+    if search_term == None or search_term == "":
         search_term = 'test'
-    tweet_limit = 15
 
     results = twitterbot.get_cursor_results(search_term, tweet_limit)
 
@@ -63,8 +59,20 @@ def root():
     word_count = analysis.count_words(word_list)
     top_words_counter = analysis.top_words(word_list, report_limit)
 
+    # Pagination
+    # TODO(zooraze): cache results; can't query twitter api every time
+    page = int(request.args.get('page', 1))
+    tweet_count = len(all_tweets)
+    data = range(tweet_count)
+    pager = Pagination(page, tweet_count)
+    pages = pager.get_pages()
+    skip = (page - 1) * app.config['PAGE_SIZE']
+    limit = app.config['PAGE_SIZE']
+    data_to_show = results[skip: skip + limit]
+
     return render_template('index.html',
-                           results=results,
+                           pages=pages,
+                           results=data_to_show,
                            search_term=search_term,
                            current_time=analysis.current_time(),
                            word_count=word_count,
